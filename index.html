@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WIKER E ARIELA – Comércio Geral & Prestação de Serviços</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #333;
+            --secondary-color: #666;
+            --bg-white: #ffffff;
+            --bg-gray: #f8f9fa;
+            --text-dark: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        header {
+            background: var(--bg-white);
+            padding: 1.5rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text .main {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+        }
+
+        .logo-text .sub {
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: var(--secondary-color);
+            margin-top: 0.2rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .hero {
+            margin-top: 80px;
+            background: var(--bg-white);
+            padding: 8rem 5% 4rem 5%;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: var(--secondary-color);
+            max-width: 800px;
+            margin: 0 auto 3rem auto;
+            line-height: 1.8;
+        }
+
+        .equity-card {
+            max-width: 700px;
+            margin: 3rem auto 0 auto;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+            color: white;
+            text-align: center;
+        }
+
+        .equity-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .equity-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: white;
+            margin: 0;
+        }
+
+        .equity-card a {
+            color: white;
+            text-decoration: underline;
+            font-weight: 600;
+            transition: opacity 0.3s;
+        }
+
+        .equity-card a:hover {
+            opacity: 0.8;
+        }
+
+        section {
+            padding: 6rem 5%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        section:nth-child(odd) {
+            background: var(--bg-white);
+        }
+
+        section:nth-child(even) {
+            background: var(--bg-gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 3rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .about-card {
+            background: var(--bg-white);
+            padding: 2.5rem;
+            border-radius: 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .about-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .about-card p {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+
+        .about-card ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .about-card ul li {
+            padding: 0.5rem 0;
+            color: var(--secondary-color);
+            border-bottom: 1px solid #eee;
+        }
+
+        .about-card ul li:last-child {
+            border-bottom: none;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: var(--bg-white);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+            border: 1px solid #e0e0e0;
+        }
+
+        .service-card .icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem auto;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .service-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .service-card p {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .product-card {
+            background: var(--bg-white);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            border: 1px solid #e0e0e0;
+        }
+
+        .product-card .icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1rem auto;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .product-card h3 {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: var(--bg-white);
+            padding: 3rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .contact-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+
+        .contact-card p {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 3rem 5%;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem 5%;
+            }
+
+            .logo img {
+                height: 50px;
+            }
+
+            .logo-text .main {
+                font-size: 1.1rem;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            .hero {
+                padding: 5rem 5%;
+            }
+
+            section {
+                padding: 4rem 5%;
+                min-height: auto;
+            }
+
+            .about-grid,
+            .services-grid,
+            .products-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="Wiker e Arirla .jpeg" alt="WIKER E ARIELA Logo">
+            <div class="logo-text">
+                <span class="main">WIKER E ARIELA</span>
+                <span class="sub">Comércio Geral & Prestação de Serviços</span>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#produtos">Produtos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Ligando o campo ao consumidor</h1>
+            <p>Qualidade, eficiência e responsabilidade no escoamento, comercialização e distribuição de produtos agrícolas em Angola</p>
+            
+            <div class="equity-card">
+                <h3>🚀 Programa EquityPilot</h3>
+                <p>A Wiker E Ariela foi aceita no programa EquityPilot da <a href="https://www.fastercapital.com" target="_blank">FasterCapital</a> e está buscando um capital de USD 100.000-500.000+</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre">
+        <div class="container">
+            <h2>Quem Somos</h2>
+            <div class="about-grid">
+                <div class="about-card">
+                    <p>A <strong>WIKER E ARIELA</strong> é uma instituição de direito angolano, registada sob o nº 20148-24/240507 na Conservatória do Registo Comercial de Luanda, publicada no Diário da República Online em Maio de 2024.</p>
+                    <p style="margin-top: 1rem;">Com sede em Luanda, Município de Belas, actuamos no sector do comércio geral com forte foco no agronegócio.</p>
+                </div>
+
+                <div class="about-card">
+                    <h3>Missão</h3>
+                    <p>Garantir que os produtos agrícolas cheguem do campo ao consumidor final com qualidade, eficiência logística e preços justos, promovendo desenvolvimento económico e inclusão social.</p>
+                </div>
+
+                <div class="about-card">
+                    <h3>Visão</h3>
+                    <p>Ser uma referência nacional no escoamento, comercialização e produção agrícola sustentável em Angola.</p>
+                </div>
+
+                <div class="about-card">
+                    <h3>Valores</h3>
+                    <ul>
+                        <li>Integridade</li>
+                        <li>Responsabilidade Social</li>
+                        <li>Sustentabilidade</li>
+                        <li>Transparência</li>
+                        <li>Compromisso com o desenvolvimento local</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicos">
+        <div class="container">
+            <h2>Nossos Serviços</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="images/escoamento.jpg" alt="Escoamento Agrícola" class="icon">
+                    <h3>Escoamento Agrícola</h3>
+                    <p>Transporte eficiente da produção do campo até centros de distribuição e pontos de venda</p>
+                </div>
+                <div class="service-card">
+                    <img src="images/logistica.jpg" alt="Logística" class="icon">
+                    <h3>Logística e Distribuição</h3>
+                    <p>Planeamento logístico para garantir rapidez, segurança e conservação adequada dos produtos</p>
+                </div>
+                <div class="service-card">
+                    <img src="images/grosso.jpg" alt="Comercialização" class="icon">
+                    <h3>Comercialização a Grosso</h3>
+                    <p>Fornecimento para supermercados, mercados formais e empresas institucionais</p>
+                </div>
+                <div class="service-card">
+                    <img src="images/retalho.jpg" alt="Venda a Retalho" class="icon">
+                    <h3>Venda a Retalho</h3>
+                    <p>Distribuição para consumidores diversos, com qualidade e preços competitivos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="produtos">
+        <div class="container">
+            <h2>Nossos Produtos</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="images/horticolas.jpg" alt="Hortícolas" class="icon">
+                    <h3>Hortícolas</h3>
+                </div>
+                <div class="product-card">
+                    <img src="images/tuberculos.jpg" alt="Tubérculos" class="icon">
+                    <h3>Tubérculos</h3>
+                </div>
+                <div class="product-card">
+                    <img src="images/leguminosas.jpg" alt="Leguminosas" class="icon">
+                    <h3>Leguminosas</h3>
+                </div>
+                <div class="product-card">
+                    <img src="images/frutas.jpg" alt="Frutas" class="icon">
+                    <h3>Frutas</h3>
+                </div>
+                <div class="product-card">
+                    <img src="images/ovos.jpg" alt="Ovos" class="icon">
+                    <h3>Ovos</h3>
+                </div>
+                <div class="product-card">
+                    <img src="images/frango.jpg" alt="Frango" class="icon">
+                    <h3>Frango</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto">
+        <div class="container">
+            <h2>Contacto</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h3>Localização</h3>
+                    <p>Luanda, Município de Belas<br>
+                    Kilamba Kiaxi<br>
+                    Distrito Urbano<br>
+                    Bairro Golfe 1<br>
+                    Rua Machado Saldanha</p>
+                </div>
+               
+                <div class="contact-card">
+                    <h3>Contactos</h3>
+                    <p><strong>Telefone:</strong> +244 923 464 274</p>
+                    <p><strong>WhatsApp:</strong> +244 923 464 274</p>
+                    <p><strong>NIF:</strong> 5001936190</p>
+                    <p><strong>Registo Comercial:</strong> 20148-24/240507</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 WIKER E ARIELA – Comércio Geral & Prestação de Serviços, LDA</p>
+        <p>Todos os direitos reservados</p>
+    </footer>
+</body>
+</html>
